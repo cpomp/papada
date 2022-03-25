@@ -1,6 +1,7 @@
 # papada
 Procesa e imprime estadisticas de los Campeonatos de Poker
 
+```
 usage: parsePokerData.py [-h] [-d INDIR] [-pd] [-pp] [-pu] [-r]
 
 PArsePAkerDAta.py (PAPADA) - Procesa e imprime las estadisticas de los
@@ -17,3 +18,5 @@ optional arguments:
                         Puestos
   -r, --rivalidades     Imprimir Rivalidades - Heads Up (2 o mas)
 example: python parsePokerData.py -d torneos
+
+```
