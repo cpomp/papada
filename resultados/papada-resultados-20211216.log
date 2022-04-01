@@ -1,0 +1,107 @@
+
+=================== PArsePAkerDAta.py (PAPADA) - Ejecutando ====================
+
+ Torneos: 7 | Mesas Totales: 86
+----------------------------------------------
+ 1.[Bru     ] Pts/Mesa: 2.48 | Pts: 211 | MJ: 85 (98%) | $$: 773.71 | ROI:  82%
+ 2.[Pomp    ] Pts/Mesa: 2.18 | Pts: 179 | MJ: 82 (95%) | $$: 555.37 | ROI:  35%
+ 3.[Lilo    ] Pts/Mesa: 2.03 | Pts: 154 | MJ: 76 (88%) | $$: 465.4  | ROI:  22%
+ 4.[Fox     ] Pts/Mesa: 2.02 | Pts: 131 | MJ: 65 (75%) | $$: 413.8  | ROI:  27%
+ 5.[Jimmy   ] Pts/Mesa: 1.88 | Pts: 154 | MJ: 82 (95%) | $$: 551.5  | ROI:  34%
+ 6.[Negro   ] Pts/Mesa: 1.73 | Pts: 126 | MJ: 73 (84%) | $$: 308.0  | ROI: -15%
+ 7.[Pucky L ] Pts/Mesa: 1.68 | Pts: 116 | MJ: 69 (80%) | $$: 277.5  | ROI: -19%
+ 8.[Razor   ] Pts/Mesa: 1.51 | Pts: 127 | MJ: 84 (97%) | $$: 329.5  | ROI: -21%
+ 9.[Richi   ] Pts/Mesa: 1.33 | Pts: 101 | MJ: 76 (88%) | $$: 227.5  | ROI: -40%
+10.[Cerba   ] Pts/Mesa: 1.18 | Pts: 100 | MJ: 85 (98%) | $$: 120.0  | ROI: -71%
+11.[Gordotox] Pts/Mesa: 1.13 | Pts: 78  | MJ: 69 (80%) | $$: 163.22 | ROI: -52%
+12.[Jaguar  ] Pts/Mesa: 1.09 | Pts: 12  | MJ: 11 (12%) | $$: 0.0    | ROI: -100%
+13.[Chinto  ] Pts/Mesa: 1.0  | Pts: 1   | MJ: 1  ( 1%) | $$: 0.0    | ROI: -100%
+14.[Yimiyi  ] Pts/Mesa: 0.56 | Pts: 5   | MJ: 9  (10%) | $$: 0.0    | ROI: -100%
+
+----------------------------------------------
+ Podios y Puestos Totales - By Podios
+----------------------------------------------
+ 1.[Pomp    ] | Podios: 36 (43%)| 1ro: 12 (14%)| 2do: 11 (13%)| 3ro: 13 (15%)| Penul: 3 (3%)| Ult:  4 ( 4%)
+ 2.[Bru     ] | Podios: 32 (37%)| 1ro: 20 (23%)| 2do:  7 ( 8%)| 3ro:  5 ( 5%)| Penul: 2 (2%)| Ult:  2 ( 2%)
+ 3.[Lilo    ] | Podios: 28 (36%)| 1ro:  8 (10%)| 2do: 11 (14%)| 3ro:  9 (11%)| Penul: 3 (3%)| Ult:  0 ( 0%)
+ 4.[Jimmy   ] | Podios: 25 (30%)| 1ro: 12 (14%)| 2do:  7 ( 8%)| 3ro:  6 ( 7%)| Penul: 5 (6%)| Ult:  9 (10%)
+ 5.[Fox     ] | Podios: 23 (35%)| 1ro:  9 (13%)| 2do: 10 (15%)| 3ro:  4 ( 6%)| Penul: 5 (7%)| Ult:  7 (10%)
+ 6.[Razor   ] | Podios: 22 (26%)| 1ro:  6 ( 7%)| 2do:  7 ( 8%)| 3ro:  9 (10%)| Penul: 5 (5%)| Ult:  8 ( 9%)
+ 7.[Negro   ] | Podios: 21 (28%)| 1ro:  6 ( 8%)| 2do:  7 ( 9%)| 3ro:  8 (10%)| Penul: 2 (2%)| Ult:  6 ( 8%)
+ 8.[Pucky L ] | Podios: 20 (28%)| 1ro:  6 ( 8%)| 2do:  7 (10%)| 3ro:  7 (10%)| Penul: 2 (2%)| Ult: 10 (14%)
+ 9.[Cerba   ] | Podios: 18 (21%)| 1ro:  1 ( 1%)| 2do:  6 ( 7%)| 3ro: 11 (12%)| Penul: 4 (4%)| Ult:  9 (10%)
+10.[Richi   ] | Podios: 15 (19%)| 1ro:  3 ( 3%)| 2do:  7 ( 9%)| 3ro:  5 ( 6%)| Penul: 5 (6%)| Ult: 10 (13%)
+11.[Gordotox] | Podios:  9 (13%)| 1ro:  2 ( 2%)| 2do:  5 ( 7%)| 3ro:  2 ( 2%)| Penul: 1 (1%)| Ult: 15 (21%)
+12.[Jaguar  ] | Podios:  2 (18%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  2 (18%)| Penul: 1 (9%)| Ult:  0 ( 0%)
+13.[Yimiyi  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  2 (22%)
+14.[Chinto  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  0 ( 0%)
+
+----------------------------------------------
+ Podios y Puestos Totales - By Primero
+----------------------------------------------
+ 1.[Bru     ] | Podios: 32 (37%)| 1ro: 20 (23%)| 2do:  7 ( 8%)| 3ro:  5 ( 5%)| Penul: 2 (2%)| Ult:  2 ( 2%)
+ 2.[Jimmy   ] | Podios: 25 (30%)| 1ro: 12 (14%)| 2do:  7 ( 8%)| 3ro:  6 ( 7%)| Penul: 5 (6%)| Ult:  9 (10%)
+ 3.[Pomp    ] | Podios: 36 (43%)| 1ro: 12 (14%)| 2do: 11 (13%)| 3ro: 13 (15%)| Penul: 3 (3%)| Ult:  4 ( 4%)
+ 4.[Fox     ] | Podios: 23 (35%)| 1ro:  9 (13%)| 2do: 10 (15%)| 3ro:  4 ( 6%)| Penul: 5 (7%)| Ult:  7 (10%)
+ 5.[Lilo    ] | Podios: 28 (36%)| 1ro:  8 (10%)| 2do: 11 (14%)| 3ro:  9 (11%)| Penul: 3 (3%)| Ult:  0 ( 0%)
+ 6.[Pucky L ] | Podios: 20 (28%)| 1ro:  6 ( 8%)| 2do:  7 (10%)| 3ro:  7 (10%)| Penul: 2 (2%)| Ult: 10 (14%)
+ 7.[Negro   ] | Podios: 21 (28%)| 1ro:  6 ( 8%)| 2do:  7 ( 9%)| 3ro:  8 (10%)| Penul: 2 (2%)| Ult:  6 ( 8%)
+ 8.[Razor   ] | Podios: 22 (26%)| 1ro:  6 ( 7%)| 2do:  7 ( 8%)| 3ro:  9 (10%)| Penul: 5 (5%)| Ult:  8 ( 9%)
+ 9.[Richi   ] | Podios: 15 (19%)| 1ro:  3 ( 3%)| 2do:  7 ( 9%)| 3ro:  5 ( 6%)| Penul: 5 (6%)| Ult: 10 (13%)
+10.[Gordotox] | Podios:  9 (13%)| 1ro:  2 ( 2%)| 2do:  5 ( 7%)| 3ro:  2 ( 2%)| Penul: 1 (1%)| Ult: 15 (21%)
+11.[Cerba   ] | Podios: 18 (21%)| 1ro:  1 ( 1%)| 2do:  6 ( 7%)| 3ro: 11 (12%)| Penul: 4 (4%)| Ult:  9 (10%)
+12.[Chinto  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  0 ( 0%)
+13.[Yimiyi  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  2 (22%)
+14.[Jaguar  ] | Podios:  2 (18%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  2 (18%)| Penul: 1 (9%)| Ult:  0 ( 0%)
+
+----------------------------------------------
+ Podios y Puestos Totales - By Ultimo
+----------------------------------------------
+ 1.[Gordotox] | Podios:  9 (13%)| 1ro:  2 ( 2%)| 2do:  5 ( 7%)| 3ro:  2 ( 2%)| Penul: 1 (1%)| Ult: 15 (21%)
+ 2.[Richi   ] | Podios: 15 (19%)| 1ro:  3 ( 3%)| 2do:  7 ( 9%)| 3ro:  5 ( 6%)| Penul: 5 (6%)| Ult: 10 (13%)
+ 3.[Pucky L ] | Podios: 20 (28%)| 1ro:  6 ( 8%)| 2do:  7 (10%)| 3ro:  7 (10%)| Penul: 2 (2%)| Ult: 10 (14%)
+ 4.[Cerba   ] | Podios: 18 (21%)| 1ro:  1 ( 1%)| 2do:  6 ( 7%)| 3ro: 11 (12%)| Penul: 4 (4%)| Ult:  9 (10%)
+ 5.[Jimmy   ] | Podios: 25 (30%)| 1ro: 12 (14%)| 2do:  7 ( 8%)| 3ro:  6 ( 7%)| Penul: 5 (6%)| Ult:  9 (10%)
+ 6.[Razor   ] | Podios: 22 (26%)| 1ro:  6 ( 7%)| 2do:  7 ( 8%)| 3ro:  9 (10%)| Penul: 5 (5%)| Ult:  8 ( 9%)
+ 7.[Fox     ] | Podios: 23 (35%)| 1ro:  9 (13%)| 2do: 10 (15%)| 3ro:  4 ( 6%)| Penul: 5 (7%)| Ult:  7 (10%)
+ 8.[Negro   ] | Podios: 21 (28%)| 1ro:  6 ( 8%)| 2do:  7 ( 9%)| 3ro:  8 (10%)| Penul: 2 (2%)| Ult:  6 ( 8%)
+ 9.[Pomp    ] | Podios: 36 (43%)| 1ro: 12 (14%)| 2do: 11 (13%)| 3ro: 13 (15%)| Penul: 3 (3%)| Ult:  4 ( 4%)
+10.[Yimiyi  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  2 (22%)
+11.[Bru     ] | Podios: 32 (37%)| 1ro: 20 (23%)| 2do:  7 ( 8%)| 3ro:  5 ( 5%)| Penul: 2 (2%)| Ult:  2 ( 2%)
+12.[Jaguar  ] | Podios:  2 (18%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  2 (18%)| Penul: 1 (9%)| Ult:  0 ( 0%)
+13.[Chinto  ] | Podios:  0 ( 0%)| 1ro:  0 ( 0%)| 2do:  0 ( 0%)| 3ro:  0 ( 0%)| Penul: 0 (0%)| Ult:  0 ( 0%)
+14.[Lilo    ] | Podios: 28 (36%)| 1ro:  8 (10%)| 2do: 11 (14%)| 3ro:  9 (11%)| Penul: 3 (3%)| Ult:  0 ( 0%)
+
+----------------------------------------------
+ Rivalidates - Heads Up (2 o mas)
+----------------------------------------------
+[      Fox vs Pomp] Heads Up: 5 | [Ganados] Fox: 3, Pomp: 2
+[      Bru vs Lilo] Heads Up: 5 | [Ganados] Bru: 3, Lilo: 2
+[  Pomp vs Pucky L] Heads Up: 5 | [Ganados] Pucky L: 3, Pomp: 2
+[     Bru vs Negro] Heads Up: 4 | [Ganados] Negro: 2, Bru: 2
+[       Bru vs Fox] Heads Up: 4 | [Ganados] Bru: 4
+[     Bru vs Razor] Heads Up: 3 | [Ganados] Bru: 3
+[      Bru vs Pomp] Heads Up: 3 | [Ganados] Bru: 2, Pomp: 1
+[   Jimmy vs Richi] Heads Up: 3 | [Ganados] Jimmy: 3
+[     Bru vs Jimmy] Heads Up: 3 | [Ganados] Jimmy: 2, Bru: 1
+[    Jimmy vs Pomp] Heads Up: 3 | [Ganados] Pomp: 3
+[   Razor vs Richi] Heads Up: 3 | [Ganados] Razor: 2, Richi: 1
+[    Jimmy vs Lilo] Heads Up: 3 | [Ganados] Jimmy: 2, Lilo: 1
+[    Pomp vs Razor] Heads Up: 3 | [Ganados] Pomp: 2, Razor: 1
+[  Bru vs Gordotox] Heads Up: 2 | [Ganados] Bru: 2
+[   Jimmy vs Negro] Heads Up: 2 | [Ganados] Jimmy: 2
+[     Bru vs Cerba] Heads Up: 2 | [Ganados] Bru: 2
+[ Jimmy vs Pucky L] Heads Up: 2 | [Ganados] Pucky L: 1, Jimmy: 1
+[  Fox vs Gordotox] Heads Up: 2 | [Ganados] Gordotox: 1, Fox: 1
+[     Fox vs Negro] Heads Up: 2 | [Ganados] Negro: 1, Fox: 1
+[     Lilo vs Pomp] Heads Up: 2 | [Ganados] Pomp: 1, Lilo: 1
+[ Pucky L vs Richi] Heads Up: 2 | [Ganados] Pucky L: 1, Richi: 1
+[      Fox vs Lilo] Heads Up: 2 | [Ganados] Fox: 1, Lilo: 1
+[    Lilo vs Razor] Heads Up: 2 | [Ganados] Lilo: 1, Razor: 1
+[Gordotox vs Jimmy] Heads Up: 2 | [Ganados] Jimmy: 2
+[    Lilo vs Negro] Heads Up: 2 | [Ganados] Negro: 2
+
+----------------------------------------------
+
+======= PArsePAkerDAta.py (PAPADA) - Completado - Runtime: 0.02 segundos =======
+
