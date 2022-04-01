@@ -364,6 +364,7 @@ if __name__ == "__main__":
 	defaultinDir= "torneos"
 	campeonatos= []
 	costoMesa= 5
+	minThreshPerc= 25
 
 	#########################################################################################
 	""" Process command line arguments """
@@ -765,9 +766,10 @@ if __name__ == "__main__":
 		#print "\n----------------------------------------------"
 		#end campeonatos for
 	
-	#stats after data aggregation	
+	#stats after data aggregation
+	jugsToRemove= []
 	stats.mesasTot= mesasTot
-	for jug in stats.jugsDict:		
+	for jug in stats.jugsDict:	
 
 		costoTotal= int(stats.jugsDict[jug].pj) * costoMesa
 		billTotal= toFloat(stats.jugsDict[jug].billete)
@@ -782,6 +784,15 @@ if __name__ == "__main__":
 		js= stats.jugsDict[jug]
 		js.podiosCnt = js.primeroCnt + js.segundoCnt + js.terceroCnt
 		
+		#find what jugador if not meets threshold
+		if(stats.jugsDict[jug].pjPorcentaje < minThreshPerc):
+			jugsToRemove.append(jug)
+			
+		
+	#now remove jugador if not meets threshold
+	for jtr in jugsToRemove:
+		stats.jugsDict.pop(jtr)
+	
 	
 	#call helper methods based on the mode
 	printMainTable(stats)
