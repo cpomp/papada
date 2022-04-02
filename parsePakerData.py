@@ -50,11 +50,17 @@ class JugadorStats(Jugador):
 		self.roiTotal= 0.0
 		self.ptsPorMesa= 0.0
 		self.primeroCnt= 0
+		self.primeroPerc= 0.0
 		self.segundoCnt= 0
+		self.segundoPerc= 0.0
 		self.terceroCnt= 0
+		self.terceroPerc= 0.0
 		self.penultimoCnt= 0
+		self.penultimoPerc= 0.0
 		self.ultimoCnt= 0
-		self.podioCnt= 0
+		self.ultimoPerc= 0.0
+		self.podiosCnt= 0
+		self.podiosPerc= 0.0
 		
 		
 	def __init__(self, nombre, puntos, pj, roi, billete):
@@ -68,11 +74,17 @@ class JugadorStats(Jugador):
 		self.roiTotal= 0.0
 		self.ptsPorMesa= 0.0
 		self.primeroCnt= 0
+		self.primeroPerc= 0.0
 		self.segundoCnt= 0
+		self.segundoPerc= 0.0
 		self.terceroCnt= 0
+		self.terceroPerc= 0.0
 		self.penultimoCnt= 0
+		self.penultimoPerc= 0.0
 		self.ultimoCnt= 0
-		self.podioCnt= 0
+		self.ultimoPerc= 0.0
+		self.podiosCnt= 0
+		self.podiosPerc= 0.0
 	
 		
 class Mesa:
@@ -324,13 +336,13 @@ def printMainTable(stats):
 def printPodiosPuestos(stats):
 	for idx, x in enumerate(stats.jugsDict):
 		mj= int(stats.jugsDict[x].pj)
-	
-		#print (x, "Pods:" , stats.jugsDict[x].podiosCnt, "Prim: ", stats.jugsDict[x].primeroCnt, "Seg: ", stats.jugsDict[x].segundoCnt, "Ter: ", stats.jugsDict[x].terceroCnt, "Penul: ", stats.jugsDict[x].penultimoCnt, "Ult: ", stats.jugsDict[x].ultimoCnt)
+
 		print("%s.[%s] | Podios: %s (%s%%)| 1ro: %s (%s%%)| 2do: %s (%s%%)| 3ro: %s (%s%%)| Penul: %s (%s%%)| Ult: %s (%s%%)" % (str(idx+1).rjust(2), x.ljust(8), 
-			str(stats.jugsDict[x].podiosCnt).rjust(2), str(calcPerc(mj, stats.jugsDict[x].podiosCnt)).rjust(2), str(stats.jugsDict[x].primeroCnt).rjust(2), 
-			str(calcPerc(mj, stats.jugsDict[x].primeroCnt)).rjust(2), str(stats.jugsDict[x].segundoCnt).rjust(2), str(calcPerc(mj, stats.jugsDict[x].segundoCnt)).rjust(2),
-			str(stats.jugsDict[x].terceroCnt).rjust(2), str(calcPerc(mj, stats.jugsDict[x].terceroCnt)).rjust(2), stats.jugsDict[x].penultimoCnt, 
-			str(calcPerc(mj, stats.jugsDict[x].penultimoCnt)), str(stats.jugsDict[x].ultimoCnt).rjust(2),  str(calcPerc(mj, stats.jugsDict[x].ultimoCnt)).rjust(2)))
+			str(stats.jugsDict[x].podiosCnt).rjust(2), str(stats.jugsDict[x].podiosPerc).rjust(2), str(stats.jugsDict[x].primeroCnt).rjust(2), 
+			str(stats.jugsDict[x].primeroPerc).rjust(2), str(stats.jugsDict[x].segundoCnt).rjust(2), str(stats.jugsDict[x].segundoPerc).rjust(2),
+			str(stats.jugsDict[x].terceroCnt).rjust(2), str(stats.jugsDict[x].terceroPerc).rjust(2), stats.jugsDict[x].penultimoCnt, 
+			str(stats.jugsDict[x].penultimoPerc), str(stats.jugsDict[x].ultimoCnt).rjust(2),  str(stats.jugsDict[x].ultimoPerc).rjust(2)))
+
 
 	print "\n----------------------------------------------"
 	
@@ -784,6 +796,14 @@ if __name__ == "__main__":
 		js= stats.jugsDict[jug]
 		js.podiosCnt = js.primeroCnt + js.segundoCnt + js.terceroCnt
 		
+		#calculate and add percentages
+		js.podiosPerc= calcPerc(int(js.pj), js.podiosCnt)
+		js.primeroPerc= calcPerc(int(js.pj), js.primeroCnt)
+		js.segundoPerc= calcPerc(int(js.pj), js.segundoCnt)
+		js.terceroPerc= calcPerc(int(js.pj), js.terceroCnt)
+		js.penultimoPerc= calcPerc(int(js.pj), js.penultimoCnt)
+		js.ultimoPerc= calcPerc(int(js.pj), js.ultimoCnt)
+		
 		#find what jugador if not meets threshold
 		if(stats.jugsDict[jug].pjPorcentaje < minThreshPerc):
 			jugsToRemove.append(jug)
@@ -801,7 +821,7 @@ if __name__ == "__main__":
 	if(args.podios):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].podiosCnt
+				key=lambda x: x[1].podiosPerc
 		)))
 		print (" Podios y Puestos Totales - By Podios")
 		print "----------------------------------------------"
@@ -810,7 +830,7 @@ if __name__ == "__main__":
 	if(args.podiosPrim):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].primeroCnt
+				key=lambda x: x[1].primeroPerc
 		)))
 		print (" Podios y Puestos Totales - By Primero")
 		print "----------------------------------------------"
@@ -819,7 +839,7 @@ if __name__ == "__main__":
 	if(args.podiosUlt):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].ultimoCnt
+				key=lambda x: x[1].ultimoPerc
 		)))
 		print (" Podios y Puestos Totales - By Ultimo")
 		print "----------------------------------------------"
