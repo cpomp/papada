@@ -319,8 +319,7 @@ def printMainTable(stats):
     #sort jugsDict by puntos x Mesa
 	stats.jugsDict= collections.OrderedDict(reversed(sorted(
 			stats.jugsDict.items(),
-			key=lambda x: float(x[1].ptsPorMesa)
-#			key=lambda x: float(x[1].puntos)
+			key=lambda x: (float(x[1].ptsPorMesa), x[1].roiTotal)
 		)))
 	
 	for idx, x in enumerate(stats.jugsDict):
@@ -814,14 +813,14 @@ if __name__ == "__main__":
 		stats.jugsDict.pop(jtr)
 	
 	
-	#call helper methods based on the mode
+	#call helper methods to print based on the mode
 	printMainTable(stats)
         
     
 	if(args.podios):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].podiosPerc
+				key=lambda x: (x[1].podiosPerc, x[1].primeroPerc)
 		)))
 		print (" Podios y Puestos Totales - By Podios")
 		print "----------------------------------------------"
@@ -830,7 +829,7 @@ if __name__ == "__main__":
 	if(args.podiosPrim):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].primeroPerc
+				key=lambda x: (x[1].primeroPerc, x[1].podiosPerc)
 		)))
 		print (" Podios y Puestos Totales - By Primero")
 		print "----------------------------------------------"
@@ -839,7 +838,7 @@ if __name__ == "__main__":
 	if(args.podiosUlt):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: x[1].ultimoPerc
+				key=lambda x: (x[1].ultimoPerc, -x[1].podiosPerc)
 		)))
 		print (" Podios y Puestos Totales - By Ultimo")
 		print "----------------------------------------------"
