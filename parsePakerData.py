@@ -257,7 +257,7 @@ class Logger(object):
 # HELPER METHODS
 def quit():
 	"""Program was not initialized correctly"""
-	print("example: python parsePokerData.py -d torneos")
+	print("example: python parsePakerData.py -d torneos")
 	sys.exit(1)
 
 
