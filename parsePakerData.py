@@ -314,7 +314,7 @@ def calcPerc(totNum, smallNum):
 def printMainTable(stats):
 	print (" Torneos: %d | Mesas Totales: %d" % (stats.campTot, stats.mesasTot))
 	#print (" Torneos: %d | Mesas Totales: %d (2 anos 1 dia)" % (stats.campTot, stats.mesasTot))
-	print "----------------------------------------------"
+	print "----------------------------------------------------"
         
     #sort jugsDict by puntos x Mesa
 	stats.jugsDict= collections.OrderedDict(reversed(sorted(
@@ -329,12 +329,11 @@ def printMainTable(stats):
 				str(stats.jugsDict[x].puntos).ljust(3), str(stats.jugsDict[x].pj).ljust(2), str(stats.jugsDict[x].pjPorcentaje).rjust(2), 
 				str(round(float(stats.jugsDict[x].billete), 2)).ljust(6), str(int(stats.jugsDict[x].roiTotal)).rjust(3)))
 
-	print "\n----------------------------------------------"
+	print "\n---------------------------------------------------"
 
 ##### PRINT PODIOS Y PUESTOS #####
 def printPodiosPuestos(stats):
 	for idx, x in enumerate(stats.jugsDict):
-		mj= int(stats.jugsDict[x].pj)
 
 		print("%s.[%s] | Podios: %s (%s%%)| 1ro: %s (%s%%)| 2do: %s (%s%%)| 3ro: %s (%s%%)| Penul: %s (%s%%)| Ult: %s (%s%%)" % (str(idx+1).rjust(2), x.ljust(8), 
 			str(stats.jugsDict[x].podiosCnt).rjust(2), str(stats.jugsDict[x].podiosPerc).rjust(2), str(stats.jugsDict[x].primeroCnt).rjust(2), 
@@ -343,7 +342,7 @@ def printPodiosPuestos(stats):
 			str(stats.jugsDict[x].penultimoPerc), str(stats.jugsDict[x].ultimoCnt).rjust(2),  str(stats.jugsDict[x].ultimoPerc).rjust(2)))
 
 
-	print "\n----------------------------------------------"
+	print "\n----------------------------------------------------"
 	
 ##### HEADS UP / RIVALIDADES #####
 def printRivalidades(stats):
@@ -351,9 +350,12 @@ def printRivalidades(stats):
 			stats.huDict.items(),
 			key=lambda x: float(x[1].cnt)
 		)))
-		
-	print (" Rivalidates - Heads Up (2 o mas)")
-	print "----------------------------------------------"
+	if(args.tabla):
+		print (" Rivalidates - Heads Up (2 o mas)")
+			
+	else:
+		print (" Rivalidates - Heads Up (2 o mas) (Mesas: %d)" % stats.mesasTot)
+	print "----------------------------------------------------"
 	totHeadsUp= 0
 	for idx, x in enumerate(stats.huDict):
 		stats.huDict[x].sortPrimeros()
@@ -362,7 +364,7 @@ def printRivalidades(stats):
 		
 		totHeadsUp += stats.huDict[x].cnt
 #	print ("TOT HEADS UP", totHeadsUp)	
-	print "\n----------------------------------------------"	
+	print "\n---------------------------------------------------"	
 
 
 ############## MAIN ##############
@@ -382,6 +384,7 @@ if __name__ == "__main__":
 	# Parse and process command line args
 	parser = argparse.ArgumentParser(description='PArsePAkerDAta.py (PAPADA) - Procesa e imprime las estadisticas de los Campeonatos de Poker')
 	parser.add_argument('-d', '--inDir', help='Directorio con todos los archivos CSV')
+	parser.add_argument('-t', '--tabla', action='store_true', help='Imprimir Tabla Global')
 	parser.add_argument('-pd', '--podios', action='store_true', help='Imprimir Puestos y Podios - Ordenados x Podios')
 	parser.add_argument('-pp', '--podiosPrim', action='store_true', help='Imprimir Puestos y Podios - Ordenados x Primeros Puestos')
 	parser.add_argument('-pu', '--podiosUlt', action='store_true', help='Imprimir Puestos y Podios - Ordenados x Ultimos Puestos')
@@ -396,7 +399,6 @@ if __name__ == "__main__":
 	# Assign command line args to variables
 	#inDir = args.inDir
 	inDir= getInputOrDefault(args.inDir, defaultinDir)
-
 	#print inDir
 	
 	#rows = []
@@ -446,10 +448,11 @@ if __name__ == "__main__":
 		ultMesaIdx= len(fields)-5
 		
 		#filename format MUST BE anyString11.anyting
-		campRegex= re.compile(r'(\d+).')
+		campRegex= re.compile(r'(\d+).csv$')
 		mo= campRegex.search(filename)
 		
 		currCampName= "Torneo " + mo.group(1)
+		#print (filename, mo.group(1))
 		currCamp= Campeonato(currCampName, fields[begMesaIdx], fields[ultMesaIdx])
 		
 		#initialize possDict
@@ -513,10 +516,12 @@ if __name__ == "__main__":
 				
 				#process puntos negativos
 				elif(pts != None and pts < 0):
-					#print ("INSIDE - Nombre: ", row[nombreIdx], ", Pts: ",  pts)
+					#print ("INSIDE Pts Negativos - Nombre: ", row[nombreIdx], ", Pts: ",  pts)
 					currJugMesa.puntos= pts
 					#solo primer campeonato tiene -3
+					#print ("currCampName", currCampName)
 					if currCampName == 'Torneo 1':
+						#print ("Inside is Torneo 1")
 						if (pts == -3):
 							currMesa.ultimo= row[nombreIdx]
 							currMesa.ultCampPos= row[posIdx]
@@ -524,11 +529,12 @@ if __name__ == "__main__":
 							currMesa.penultimo= row[nombreIdx]
 							currMesa.penultCampPos= row[posIdx]
 					else:
+						#print ("Inside is NOT Torneo 1")
 						#use case1: dos -1, ya vi uno
 						#if already there is an ultimo then ultimo is the one w the least points
 						if(currMesa.ultimo):
 							#print ("INSIDE currRow - Nombre: ", row[nombreIdx], ", Pts: ",  pts, ", Pos: ", row[posIdx])
-							#print ("currMesa.ultimo - Nombre: ", currMesa.ultimo, ", Pos: ",  currMesa.ultCampPos)
+							#print ("currMesa.ultimo - Nombre: ", currMesa.ultimo, ", Pts: ",  pts, ", Pos: ",  currMesa.ultCampPos)
 							if int(currMesa.ultCampPos) < int(row[posIdx]):
 								#swap
 								#print ("Swapping")
@@ -552,7 +558,9 @@ if __name__ == "__main__":
 				#add only if Jugador jugo la mesa			
 				if(currJugMesa.puntos != None):
 					currMesa.jugadores.append(currJugMesa)
-				#END for each mesa for jugador row			
+				#END for each mesa for jugador row	
+				#PRINT currMesa
+				#print (currMesa)		
 			
 			#END going through all rows
 				
@@ -814,16 +822,22 @@ if __name__ == "__main__":
 	
 	
 	#call helper methods to print based on the mode
-	printMainTable(stats)
+	if(args.tabla):
+		printMainTable(stats)
         
     
 	if(args.podios):
 		stats.jugsDict= collections.OrderedDict(reversed(sorted(
 				stats.jugsDict.items(),
-				key=lambda x: (x[1].podiosPerc, x[1].primeroPerc)
+				key=lambda x: (x[1].podiosPerc, x[1].primeroPerc, x[1].segundoPerc)
 		)))
-		print (" Podios y Puestos Totales - By Podios")
-		print "----------------------------------------------"
+		if(args.tabla):
+			print (" Podios y Puestos Totales - By Podios")
+			
+		else:
+			print (" Podios y Puestos Totales - By Podios (Mesas: %d)" % stats.mesasTot)
+
+		print "---------------------------------------------------"
 		printPodiosPuestos(stats)
 		
 	if(args.podiosPrim):
@@ -831,8 +845,13 @@ if __name__ == "__main__":
 				stats.jugsDict.items(),
 				key=lambda x: (x[1].primeroPerc, x[1].podiosPerc)
 		)))
-		print (" Podios y Puestos Totales - By Primero")
-		print "----------------------------------------------"
+		if(args.tabla):
+			print (" Podios y Puestos Totales - By Primero")
+			
+		else:
+			print (" Podios y Puestos Totales - By Primero (Mesas: %d)" % stats.mesasTot)
+		
+		print "----------------------------------------------------"
 		printPodiosPuestos(stats)
 		
 	if(args.podiosUlt):
@@ -840,8 +859,12 @@ if __name__ == "__main__":
 				stats.jugsDict.items(),
 				key=lambda x: (x[1].ultimoPerc, -x[1].podiosPerc)
 		)))
-		print (" Podios y Puestos Totales - By Ultimo")
-		print "----------------------------------------------"
+		if(args.tabla):
+			print (" Podios y Puestos Totales - By Ultimo")
+			
+		else:
+			print (" Podios y Puestos Totales - By Ultimo (Mesas: %d)" % stats.mesasTot)
+		print "----------------------------------------------------"
 		printPodiosPuestos(stats)	
 		
 	if(args.rivalidades):
