@@ -1,0 +1,12 @@
+{ command1 & command2; } > new_file
+
+
+{ python parsePakerData.py -d menos1-torneos -t & python parsePakerData.py -t; } > resultados/torneos7-8/tabla-global-7-8.log
+
+{ python parsePakerData.py -d menos1-torneos -pd & python parsePakerData.py -pd; } > resultados/torneos7-8/podios-7-8.log
+
+{ python parsePakerData.py -d menos1-torneos -pp & python parsePakerData.py -pp; } > resultados/torneos7-8/primeros-7-8.log
+
+{ python parsePakerData.py -d menos1-torneos -pu & python parsePakerData.py -pu; } > resultados/torneos7-8/ultimos-7-8.log
+
+{ python parsePakerData.py -d menos1-torneos -r & python parsePakerData.py -r; } > resultados/torneos7-8/rivalidades-7-8.log
