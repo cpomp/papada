@@ -36,6 +36,7 @@ class Jugador(object):
 		self.pj = pj
 		self.roi = roi
 		self.billete = billete
+		self.torneoStats= {}
 		
 	def __str__(self):
 		#return f'Jugador({self.nombre}, {self.puntos})'
@@ -61,15 +62,17 @@ class JugadorStats(Jugador):
 		self.ultimoPerc= 0.0
 		self.podiosCnt= 0
 		self.podiosPerc= 0.0
+		self.torneoStats= {}
 		
 		
-	def __init__(self, nombre, puntos, pj, roi, billete):
+	def __init__(self, nombre, puntos, pj, roi, billete, torneoStats):
 		super(Jugador, self).__init__()
 		self.nombre = nombre
 		self.puntos = puntos
 		self.pj = pj
 		self.roi = roi
 		self.billete = billete
+		self.torneoStats= torneoStats
 		self.pjPorcentaje= 0.0
 		self.roiTotal= 0.0
 		self.ptsPorMesa= 0.0
@@ -196,6 +199,14 @@ class PodioStats:
 		for x in self.terceros:
 			printStr = printStr + str(x) + ": " + str(self.terceros.get(x)) + " "
 	
+		return printStr
+		
+	def personalStr(self, jug):
+		primCnt= self.primeros.get(jug) if self.primeros.get(jug) is not None else 0
+		segCnt= self.segundos.get(jug) if self.segundos.get(jug) is not None else 0
+		terCnt= self.terceros.get(jug) if self.terceros.get(jug) is not None else 0
+		
+		printStr= "Primero: " + str(primCnt) + " | Segundo: " + str(segCnt) + " | Tercero: " + str (terCnt)
 		return printStr
 		
 
@@ -389,6 +400,7 @@ if __name__ == "__main__":
 	parser.add_argument('-pp', '--podiosPrim', action='store_true', help='Imprimir Puestos y Podios - Ordenados x Primeros Puestos')
 	parser.add_argument('-pu', '--podiosUlt', action='store_true', help='Imprimir Puestos y Podios - Ordenados x Ultimos Puestos')
 	parser.add_argument('-r', '--rivalidades', action='store_true', help='Imprimir Rivalidades - Heads Up (2 o mas)')
+	parser.add_argument('-j', '--jugador', help='Nombre de Jugador para imprimir todas las estadisticas')
 
 	# Call custom function for additional console output when parse fails
 	try:
@@ -602,14 +614,21 @@ if __name__ == "__main__":
 	for camp in campeonatos:
 		#print (camp.name)
 		mesasTot += len(camp.mesas)
+	
 		
 		for x in camp.poss:
+
 			currJug= camp.poss[x][0];
 			#print ("Pos [", x , "] Nombre [", currJug.nombre, '] Puntos [', currJug.puntos, '] PJ[', currJug.pj, '] ROI[', currJug.roi , '] Billete [', currJug.billete, ']')
+
+			#add torneo info
+			#sample: [["Torneo 1", 5], ["Torneo 3", 2]]
+			#currJug.torneoStats[camp.name].append(x)
+			currJug.torneoStats[camp.name]= x
 				
 			#create the stat record
 			if(stats.jugsDict.get(currJug.nombre) is None):
-				stats.jugsDict[currJug.nombre]= JugadorStats(currJug.nombre, currJug.puntos, currJug.pj, currJug.roi, currJug.billete)
+				stats.jugsDict[currJug.nombre]= JugadorStats(currJug.nombre, currJug.puntos, currJug.pj, currJug.roi, currJug.billete, currJug.torneoStats)
 				
 			#aggregate the data
 			else:
@@ -621,6 +640,8 @@ if __name__ == "__main__":
 				stats.jugsDict[currJug.nombre].roi = myRoi + toRoi(currJug.roi)
 				myBill= toFloat(stats.jugsDict[currJug.nombre].billete)
 				stats.jugsDict[currJug.nombre].billete= myBill + toFloat(currJug.billete)
+				
+				stats.jugsDict[currJug.nombre].torneoStats[camp.name]= x
 			
 		#print all data in mesas
 		for mesa in camp.mesas:
@@ -783,6 +804,9 @@ if __name__ == "__main__":
 			#	print x
 			
 		#print "\n----------------------------------------------"
+		
+		#add torneo info to jugador
+		
 		#end campeonatos for
 	
 	#stats after data aggregation
@@ -869,15 +893,84 @@ if __name__ == "__main__":
 		
 	if(args.rivalidades):
 		printRivalidades(stats)
-	
+		
+	#print all stats for jugador
+	if(args.jugador):
+		#print (jug)
+		
+		#sort jugsDict by puntos x Mesa
+		stats.jugsDict= collections.OrderedDict(reversed(sorted(
+			stats.jugsDict.items(),
+			key=lambda x: (float(x[1].ptsPorMesa), x[1].roiTotal)
+		)))
+		
+		jugador= stats.jugsDict[args.jugador]
+		
+		#print stats globales
+		print("+++++ Estadisticas de: [%s] +++++\n" % (jugador.nombre))
+		print ("- Posicion Tabla Global: %d/%d" % (stats.jugsDict.keys().index(args.jugador)+1, len(stats.jugsDict)))
+		print ("- Pts/Mesa: %s | Pts: %s | MJ: %s (%s%%) | $$: %s | ROI: %s%%" % (str(round(jugador.ptsPorMesa, 2)).ljust(4), 
+				str(jugador.puntos).ljust(3), str(jugador.pj).ljust(2), str(jugador.pjPorcentaje).rjust(2), 
+				str(round(float(jugador.billete), 2)).ljust(6), str(int(jugador.roiTotal)).rjust(3)))
+				
+		#print posiciones
+		print("- Podios: %s (%s%%)| 1ro: %s (%s%%)| 2do: %s (%s%%)| 3ro: %s (%s%%)| Penul: %s (%s%%)| Ult: %s (%s%%)" % (
+			str(jugador.podiosCnt).rjust(2), str(jugador.podiosPerc).rjust(2), str(jugador.primeroCnt).rjust(2), 
+			str(jugador.primeroPerc).rjust(2), str(jugador.segundoCnt).rjust(2), str(jugador.segundoPerc).rjust(2),
+			str(jugador.terceroCnt).rjust(2), str(jugador.terceroPerc).rjust(2), jugador.penultimoCnt, 
+			str(jugador.penultimoPerc), str(jugador.ultimoCnt).rjust(2),  str(jugador.ultimoPerc).rjust(2)))
+			
+		#print Torneo info
+		jugador.torneoStats= collections.OrderedDict(sorted(
+			jugador.torneoStats.items(),
+			key=lambda x: (x[0])
+		))
+		
+		
+		for torneo in jugador.torneoStats:
+			print torneo, jugador.torneoStats[torneo]	
+		
+		
+		#print rivalidades
+		stats.huDict= collections.OrderedDict(reversed(sorted(
+				stats.huDict.items(),
+				key=lambda x: float(x[1].cnt)
+			)))
 
+		print("\n-------------")			
+		print(" Rivalidades")
+		print("-------------")
+		for x in stats.huDict:
+			#print jugsStr
+			hu= stats.huDict[x]
+			if(args.jugador in hu.jugsStr):
+				print("[%s] Heads Up: %d | %s" % (hu.jugsStr.rjust(17), hu.cnt, str(hu)))
 
-	stats.podDict= collections.OrderedDict(reversed(sorted(
+		print("\n-----------------")		
+		print(" Podios Detalles")
+		print("-----------------")
+		stats.podDict= collections.OrderedDict(reversed(sorted(
 			stats.podDict.items(),
 			key=lambda x: float(x[1].cnt)
 		)))
 		
-	totPodios= 0
+		for x in stats.podDict:
+			pd= stats.podDict[x]
+		
+			if(args.jugador in pd.jugsStr):
+				print("[%s] Podios: %d | %s" % (pd.jugsStr.rjust(24), pd.cnt, pd.personalStr(args.jugador)))
+	
+	
+	
+	
+	#########################################################################################
+	######## START - Print podios info (not used)
+#	stats.podDict= collections.OrderedDict(reversed(sorted(
+#			stats.podDict.items(),
+#			key=lambda x: float(x[1].cnt)
+#		)))
+		
+#	totPodios= 0
 #	for idx, x in enumerate(stats.podDict):
 #		print(stats.podDict[x].jugsStr, stats.podDict[x].cnt, str(stats.podDict[x]))
 #		totPodios += stats.podDict[x].cnt
@@ -885,10 +978,10 @@ if __name__ == "__main__":
 #	print ("TOT PODIOS\n", totPodios)
 #	print "\n----------------------------------------------"
 	
-	stats.primeros= collections.OrderedDict(reversed(sorted(
-			stats.primeros.items(),
-			key=lambda x: float(x[1])
-		)))
+#	stats.primeros= collections.OrderedDict(reversed(sorted(
+#			stats.primeros.items(),
+#			key=lambda x: float(x[1])
+#		)))
 		
 	#for x in stats.primeros:
 	#	print ("Primeros", x, stats.primeros[x])
@@ -905,7 +998,7 @@ if __name__ == "__main__":
 		
 	#print "\n----------------------------------------------"
 	
-	
+	######## END - Print podios info (not used)
 	#########################################################################################
 	
 	totTime= datetime.datetime.now() - begin_time
